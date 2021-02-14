@@ -1,0 +1,55 @@
+﻿<Window x:Class="TelegramBt.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TelegramBt"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid ShowGridLines="True">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+
+
+        <ListBox x:Name="logList" 
+                 Grid.Column="0"
+                 HorizontalAlignment="Stretch" 
+                 Margin="5" 
+                 VerticalAlignment="Stretch" 
+                 >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Black" Margin="5" BorderThickness="1" CornerRadius="10">
+                        <StackPanel Margin="10">
+                            <TextBlock Text="{Binding FirstName}" Margin="0" FontSize="15"/>
+                            <TextBlock Text="{Binding Msg}" Margin="0" FontSize="20"/>
+                            <TextBlock Text="{Binding Time}" Margin="10 0" FontSize="10" Foreground="Gray" TextAlignment="Right"/>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <GroupBox Grid.Column="1" 
+                  FontSize="20"
+                  Header="Отправка сообщения"
+                  HorizontalAlignment="Stretch" 
+                  Margin="5"
+                  VerticalAlignment="Stretch" 
+                  >
+            <StackPanel>
+                <TextBlock x:Name="TargetSend" 
+                           Text="{Binding ElementName=logList, Path=SelectedItem.Id}"
+                           Visibility="Collapsed"
+                           Margin="5"/>
+                
+                <TextBox x:Name="txtMsgSend" FontSize="20" Margin="5"/>
+                
+                <Button x:Name="btnMsgSend" FontSize="20" Content="Отправить" Margin="5" Click="btnMsgSendClick"/>
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</Window>
